@@ -1,0 +1,9 @@
+ext {
+    //发布（集成）模式--true--library   组件化模式--false--app
+    idRelese = true
+
+    app_android = [
+            compileSdk : 34,
+            minSdk : 24
+    ]
+}
