@@ -1,14 +1,20 @@
-plugins {
-    alias(libs.plugins.androidApplication)
-    alias(libs.plugins.jetbrainsKotlinAndroid)
+if (idRelese) {
+    apply plugin: 'com.android.library'
+    apply plugin: 'org.jetbrains.kotlin.android'
+} else {
+    apply plugin: 'com.android.application'
+    apply plugin: 'org.jetbrains.kotlin.android'
 }
+
 
 android {
     namespace 'com.example.order'
     compileSdk app_android.compileSdk
 
     defaultConfig {
-        applicationId "com.example.order"
+        if(!idRelese) {
+            applicationId "com.example.order"
+        }
         minSdk app_android.minSdk
         targetSdk 34
         versionCode 1
@@ -30,6 +36,9 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -42,4 +51,6 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core
+
+    implementation project(":common")
 }

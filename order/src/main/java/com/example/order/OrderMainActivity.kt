@@ -3,18 +3,18 @@ package com.example.order
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.example.common.NetManagerUtils
+import com.example.order.databinding.OrderMainActivityBinding
 
 class OrderMainActivity : AppCompatActivity() {
+    private lateinit var binding: OrderMainActivityBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContentView(R.layout.order_main_activity)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        binding = OrderMainActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
+        NetManagerUtils().netManager()
     }
 }

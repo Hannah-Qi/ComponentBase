@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">order</string>
+    <string name="app_name">订单组件</string>
+    <string name="order_component_home">订单组件主页</string>
 </resources>
