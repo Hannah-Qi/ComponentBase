@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">订单组件</string>
     <string name="order_component_home">订单组件主页</string>
+    <string name="order_debug_activity">订单组件Debug Activity</string>
 </resources>

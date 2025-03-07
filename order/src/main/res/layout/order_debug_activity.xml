@@ -5,14 +5,13 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".OrderMainActivity">
+    tools:context=".debug.OrderDebugActivity">
 
     <TextView
-        android:id="@+id/tv_to_debug_order"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:text="@string/order_component_home" />
+        android:text="@string/order_debug_activity" />
 
 </RelativeLayout>

@@ -49,6 +49,16 @@ android {
             excludes += '/META-INF/{AL2.0,LGPL2.1}'
         }
     }
+    //源集 -- 用来设置Java目录或者资源目录
+    sourceSets {
+        main {
+            if(!idRelese) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+            }
+        }
+    }
 }
 
 dependencies {

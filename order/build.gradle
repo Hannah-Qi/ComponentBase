@@ -39,7 +39,39 @@ android {
     buildFeatures {
         viewBinding = true
     }
+
+    //源集 -- 用来设置Java目录或者资源目录
+    sourceSets {
+        main {
+            if(!idRelese) {
+                manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+            } else {
+                manifest.srcFile 'src/main/AndroidManifest.xml'
+
+                java {
+                    println("sourceSets java exclude")
+                    //release 时 debug目录下文件不需要合并到主工程
+                    exclude 'com/example/order/debug/**'
+                }
+
+                kotlin {
+                    println("sourceSets java exclude")
+                    //release 时 debug目录下文件不需要合并到主工程
+                    exclude 'com/example/order/debug/**'
+                }
+            }
+        }
+    }
 }
+
+// 在编译之前删除 debug 文件夹
+//tasks.withType(JavaCompile).configureEach {
+//    doFirst {
+//        println("Deleting debug files...")
+//        delete(fileTree(dir: 'src/main/java', includes: ['**/debug/**']))
+//        println("Debug files deleted.")
+//    }
+//}
 
 dependencies {
 

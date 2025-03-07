@@ -1,6 +1,6 @@
 package com.example.personal
 
-import WeViewModel
+import com.example.personal.viewmodel.WeViewModel
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
