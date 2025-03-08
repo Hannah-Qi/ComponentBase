@@ -1,0 +1,31 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'kotlin-kapt'
+    alias(libs.plugins.jetbrainsKotlinJvm)
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = "UTF-8"
+}
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+dependencies {
+    implementation(fileTree(dir: 'libs', includes: ['*.jar']))
+
+    //编译时期进行注解处理
+    compileOnly (libs.auto.service)
+    kapt(libs.auto.service)
+
+    //帮助我们通过类调用的方式来生成Kotlin代码
+    implementation(libs.kotlinpoet)
+
+    //依赖于注解
+    implementation project(':annotation')
+}
