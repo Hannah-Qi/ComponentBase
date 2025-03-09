@@ -4,7 +4,7 @@
 1、创建一个项目包含三个app module和一个library module
 
 
-2、修改idRelese可以控制order、personal是否为一个module
+2、修改isRelese可以控制order、personal是否为一个module
 3、给app、order、personal添加一个简单的UI
 4、当order、personal是module时，引入app的build.gradle
 5、将common引入三个module里面
@@ -19,6 +19,11 @@ LiveDataBus：用于模块间的事件传递，支持生命周期感知。
 ARouter：用于模块间的页面跳转和参数传递，支持服务调用。
 
 9、annotationProcessor-->JavaPoet kapt-->KotlinPoet
+
+10、kotlinpoet占位符：
+%T 占位符可以避免硬编码类名，提高代码的可维护性
+%P 占位符用于插入字符串时，会自动处理字符串中的引号等特殊字符。
+
 
 
 Question：

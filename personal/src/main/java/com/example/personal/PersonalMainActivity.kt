@@ -15,9 +15,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
+import com.example.annotation.ARouter
 import com.example.personal.ui.WeTopBar
 import com.example.wecompose.ui.theme.WeComposeTheme
 
+@ARouter(path = "personal/PersonalMainActivity")
 class PersonalMainActivity : ComponentActivity() {
     private val viewModel: WeViewModel by viewModels()
 

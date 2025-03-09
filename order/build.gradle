@@ -1,4 +1,9 @@
-if (idRelese) {
+plugins {
+    id 'kotlin-kapt'
+    alias(libs.plugins.jetbrainsKotlinAndroid)
+}
+
+if (isRelese) {
     apply plugin: 'com.android.library'
     apply plugin: 'org.jetbrains.kotlin.android'
 } else {
@@ -12,7 +17,7 @@ android {
     compileSdk app_android.compileSdk
 
     defaultConfig {
-        if(!idRelese) {
+        if(!isRelese) {
             applicationId "com.example.order"
         }
         minSdk app_android.minSdk
@@ -21,6 +26,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: this.project.name, packageForAPT: packageForAPT]
+            }
+        }
     }
 
     buildTypes {
@@ -43,7 +53,7 @@ android {
     //源集 -- 用来设置Java目录或者资源目录
     sourceSets {
         main {
-            if(!idRelese) {
+            if(!isRelese) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
@@ -85,4 +95,7 @@ dependencies {
     androidTestImplementation libs.androidx.espresso.core
 
     implementation project(":common")
+    implementation project(":router_api")
+    implementation project(":annotation")
+    kapt project(":annotation-processor")
 }

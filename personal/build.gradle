@@ -1,4 +1,8 @@
-if (idRelese) {
+plugins {
+    id 'kotlin-kapt'
+}
+
+if (isRelese) {
     apply plugin: 'com.android.library'
     apply plugin: 'org.jetbrains.kotlin.android'
 } else {
@@ -11,7 +15,7 @@ android {
     compileSdk app_android.compileSdk
 
     defaultConfig {
-        if(!idRelese) {
+        if(!isRelese) {
             applicationId "com.example.personal"
         }
         minSdk app_android.minSdk
@@ -22,6 +26,12 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary true
+        }
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: this.project.name, packageForAPT: packageForAPT]
+            }
         }
     }
 
@@ -52,7 +62,7 @@ android {
     //源集 -- 用来设置Java目录或者资源目录
     sourceSets {
         main {
-            if(!idRelese) {
+            if(!isRelese) {
                 manifest.srcFile 'src/main/debug/AndroidManifest.xml'
             } else {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
@@ -82,4 +92,7 @@ dependencies {
     debugImplementation libs.androidx.ui.test.manifest
 
     implementation project(":common")
+    implementation project(":router_api")
+    implementation project(":annotation")
+    kapt project(":annotation-processor")
 }

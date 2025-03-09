@@ -16,6 +16,20 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        
+        buildConfigField("boolean", "isRelese", String.valueOf(isRelese))
+
+        //编译参数的传递 ARouterProcessor-->SupportedOptions
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [moduleName: this.project.name, packageForAPT: packageForAPT]
+            }
+        }
+    }
+
+    // 确保 buildConfig 功能开启
+    buildFeatures {
+        buildConfig = true
     }
 
     buildTypes {
@@ -33,6 +47,8 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        // 确保 buildConfig 功能开启
+        buildConfig = true
     }
 }
 
@@ -48,10 +64,11 @@ dependencies {
     androidTestImplementation libs.androidx.espresso.core
 
     implementation project(":common")
+    implementation project(":router_api")
     implementation project(":annotation")
     kapt project(":annotation-processor")
 
-    if(idRelese) {
+    if(isRelese) {
         implementation project(":order")
         implementation project(":personal")
     }

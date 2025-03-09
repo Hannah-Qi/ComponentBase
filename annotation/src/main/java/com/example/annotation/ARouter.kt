@@ -4,5 +4,5 @@ package com.example.annotation
 @Retention(AnnotationRetention.SOURCE) //编译时有效
 annotation class ARouter(
     val path: String,
-    val group: String = "" //app\order\personal
+//    val group: String = ""
 )

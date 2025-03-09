@@ -7,3 +7,11 @@ plugins {
 }
 
 apply from: 'app_config.gradle'
+
+// ... existing code ...
+allprojects {
+    // 使用 tasks.register 替代 task 来避免不必要的配置
+    tasks.register('cleanBuildDir', Delete) {
+        delete("${projectDir}/build")
+    }
+}
