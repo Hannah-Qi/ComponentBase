@@ -28,5 +28,4 @@ dependencies {
 
     //依赖于注解
     implementation project(':annotation')
-    implementation project(":router_api")
 }

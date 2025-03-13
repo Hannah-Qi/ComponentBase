@@ -3,4 +3,5 @@
     <string name="app_shell_home">App 壳子首页</string>
     <string name="button_to_order">订单</string>
     <string name="button_to_personal">个人中心</string>
+    <string name="to_mylibrary">点击去mylibrary</string>
 </resources>

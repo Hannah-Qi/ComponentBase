@@ -10,7 +10,7 @@ import kotlin.reflect.KClass
 class RouterBean(builder: Builder) {
 
     private var element: Element? = null
-    private var model: KClass<*>? = null
+    private var kClass: KClass<*>? = null
     private var type: RouterType? = null
     private var path:String = ""
     private var group:String = "null"
@@ -23,14 +23,14 @@ class RouterBean(builder: Builder) {
     }
 
     companion object{
-        fun create(model:KClass<*>, type: RouterType, path: String, group: String) : RouterBean{
+        fun create(clazz:KClass<*>, type: RouterType, path: String, group: String) : RouterBean{
 
             val bean = Builder
                 .addGroup(group)
                 .addPath(path)
                 .build()
             bean.setType(type)
-            bean.setModel(model)
+            bean.setClass(clazz)
             return bean
         }
     }
@@ -71,16 +71,17 @@ class RouterBean(builder: Builder) {
         this.type = type
     }
 
-    fun setModel(model:KClass<*>){
-        this.model = model
+    fun setClass(clazz:KClass<*>){
+        this.kClass = clazz
     }
+
 
     fun getType():RouterType{
         return type!!
     }
 
-    fun getModel():KClass<*>{
-        return model!!
+    fun getClass():KClass<*>{
+        return kClass!!
     }
 
     fun getGroup():String{

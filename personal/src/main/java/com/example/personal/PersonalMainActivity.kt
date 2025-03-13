@@ -16,10 +16,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 import com.example.annotation.ARouter
+import com.example.common.config.personalMainActivityPath
 import com.example.personal.ui.WeTopBar
 import com.example.wecompose.ui.theme.WeComposeTheme
 
-@ARouter(path = "personal/PersonalMainActivity")
+@ARouter(path = personalMainActivityPath)
 class PersonalMainActivity : ComponentActivity() {
     private val viewModel: WeViewModel by viewModels()
 
@@ -33,7 +34,9 @@ class PersonalMainActivity : ComponentActivity() {
                         .background(WeComposeTheme.colors.background)
                         .fillMaxSize()
                 ) {
-                    WeTopBar(stringResource(R.string.personal))
+                    WeTopBar(stringResource(R.string.personal)) {
+                        finish()
+                    }
                     
                     Box(
                         Modifier

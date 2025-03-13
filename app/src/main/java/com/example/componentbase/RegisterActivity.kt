@@ -6,8 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.annotation.ARouter
+import com.example.common.config.registerActivityPath
 
-@ARouter(path = "app/RegisterActivity")
+@ARouter(path = registerActivityPath)
 class RegisterActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

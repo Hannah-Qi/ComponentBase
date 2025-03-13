@@ -22,8 +22,14 @@
 
     <Button
         android:id="@+id/but_to_personal"
-        android:text="@string/button_to_personal"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:text="@string/button_to_personal" />
+
+    <Button
+        android:id="@+id/but_to_my_library"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/to_mylibrary" />
 
 </LinearLayout>

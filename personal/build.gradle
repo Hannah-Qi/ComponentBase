@@ -92,7 +92,7 @@ dependencies {
     debugImplementation libs.androidx.ui.test.manifest
 
     implementation project(":common")
-    implementation project(":router_api")
+    implementation project(":router_api_k")
     implementation project(":annotation")
     kapt project(":annotation-processor")
 }

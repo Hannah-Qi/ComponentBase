@@ -15,9 +15,9 @@ import com.example.annotation_processor.config.PATH_FILE_NAME
 import com.example.annotation_processor.config.PATH_METHOD_NAME
 import com.example.annotation_processor.config.PATH_VAR
 import com.example.annotation_processor.config.ROUTER_API_PACKAGE_NAME
-import com.example.annotation_processor.config.note
+import com.example.annotation_processor.config.ROUTER_PACKAGE_NAME
 import com.example.annotation_processor.config.error
-import com.example.router_api.ARouterPath
+import com.example.annotation_processor.config.note
 import com.google.auto.service.AutoService
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
@@ -43,8 +43,9 @@ import javax.lang.model.element.TypeElement
 import javax.lang.model.util.Elements
 import javax.lang.model.util.Types
 
+
 @AutoService(Processor::class) //编译器绑定
-@SupportedAnnotationTypes("com.example.annotation.ARouter") //表示我要处理哪个注解
+@SupportedAnnotationTypes(ROUTER_PACKAGE_NAME) //表示我要处理哪个注解
 @SupportedSourceVersion(SourceVersion.RELEASE_17) //支持的java版本
 @SupportedOptions(MODULE_NAME, APT_PACKAGE_NAME)
 class ARouterProcessor: AbstractProcessor() {
@@ -158,8 +159,8 @@ class ARouterProcessor: AbstractProcessor() {
 
     private fun createGroupFile() {
         /**
-         * import com.example.router_api.ARouterGroup
-         * import com.example.router_api.ARouterPath
+         * import com.example.router_api_k.ARouterGroup
+         * import com.example.router_api_k.ARouterPath
          * import kotlin.String
          * import kotlin.collections.Map
          *
@@ -172,15 +173,16 @@ class ARouterProcessor: AbstractProcessor() {
          * }
          *
          */
+        val pathType = ClassName(ROUTER_API_PACKAGE_NAME, A_ROUTER_PATH) // 替换为你的路径类型
 
         val builder = FunSpec.builder(GROUP_METHOD_NAME)
             .addModifiers(KModifier.OVERRIDE)
-            .returns(MAP.parameterizedBy(STRING, ARouterPath::class.asTypeName()))
+            .returns(MAP.parameterizedBy(STRING, pathType))
             .addStatement(
                 "val %N = mutableMapOf<%T,%T>()",
                 GROUP_VAR,
                 STRING,
-                ARouterPath::class
+                pathType
             )
 
         var groupClassName = ""
@@ -212,7 +214,7 @@ class ARouterProcessor: AbstractProcessor() {
          * import com.example.`annotation`.bean.RouterBean
          * import com.example.`annotation`.bean.RouterType
          * import com.example.order.OrderMainActivity
-         * import com.example.router_api.ARouterPath
+         * import com.example.router_api_k.ARouterPath
          * import customrouter_apt.ARouter_Path_personal
          * import kotlin.String
          * import kotlin.collections.Map
